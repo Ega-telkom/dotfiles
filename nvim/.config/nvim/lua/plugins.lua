@@ -16,10 +16,11 @@ add({ source = "arnamak/stay-centered.nvim" })
 add({ source = "rebelot/terminal.nvim" })
 
 -- LSP
-add({ source = "williamboman/mason.nvim" })
+add({ source = "mason-org/mason-lspconfig.nvim" })
+add({ source = "mason-org/mason.nvim" })
 add({
 	 source = "neovim/nvim-lspconfig",
-	 depends = { "williamboman/mason.nvim" },
+	 depends = { "mason-org/mason.nvim" },
 })
 
 -- mini.nvim modules
