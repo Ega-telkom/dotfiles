@@ -23,5 +23,4 @@ require("autocmds")
 -- Plugins
 require("plugins.mini")
 require("plugins.lsp")
-require("plugins.terminal")
 require("plugins.ui")

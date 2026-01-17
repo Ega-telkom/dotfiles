@@ -11,6 +11,21 @@ require("mini.cursorword").setup()
 require("mini.starter").setup()
 require("mini.diff").setup()
 require("mini.tabline").setup()
+require("mini.notify").setup()
+require("mini.pick").setup()
+
+local gen_loader = require('mini.snippets').gen_loader
+require('mini.snippets').setup({
+  snippets = {
+    -- Load custom file with global snippets first (adjust for Windows)
+    -- gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+
+    -- Load snippets based on current language by reading files from
+    -- "snippets/" subdirectories from 'runtimepath' directories.
+    gen_loader.from_lang(),
+  },
+})
+require("mini.snippets").start_lsp_server()
 
 require("mini.hipatterns").setup({
   highlighters = {
@@ -22,6 +37,11 @@ require("mini.hipatterns").setup({
   },
 })
 
-require("mini.icons").setup({ style = "ascii" })
-require("mini.indentscope").setup({ symbol = "│" })
-require("mini.statusline").setup({ use_icons = false })
+require("mini.indentscope").setup({
+	 symbol = "│",
+	 draw = {
+		  -- priority = 5,
+	 },
+})
+require("mini.icons").setup({ style = "glyph" })
+require("mini.statusline").setup()

@@ -6,15 +6,34 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end
 })
 
-vim.api.nvim_create_autocmd('CursorHold', {
-  callback = function()
-    local has_diag = #vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 }) > 0
+-- Status column
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
+	 callback = function()
+		  vim.o.statuscolumn = "%!v:lua.StatusColumn()"
 
-    if has_diag then
-      vim.diagnostic.open_float(nil, { focus = false })
-    else
-      vim.lsp.buf.hover()
-    end
-  end
+		  function _G.StatusColumn()
+		  local s = " "
+		  -- Signs
+		  s = s .. "%s"
+		  -- Spacing
+		  s = s .. "%="
+		  -- Line number
+		  if vim.v.virtnum < 0 then
+		  s = s .. " "
+		  else
+		  s = s .. (vim.v.relnum > 0 and vim.v.relnum or vim.v.lnum)
+		  end
+		  -- Separator
+		  s = s .. (vim.v.virtnum < 0 and "│" or "│")
+		  return s
+		  end
+  end,
 })
-vim.o.updatetime = 500
+
+-- Configure Lua LSP to work with nvim configs
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    require("lazydev").setup()
+  end,
+})

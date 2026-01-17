@@ -15,32 +15,44 @@ vim.keymap.set("n", "<leader>e", function()
   require("mini.files").open()
 end, { desc = "Open file explorer" })
 
--- Yank to system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { silent = true })
-vim.keymap.set("n", "<leader>Y", '"+Y', { silent = true })
+-- Toggle Wrap
+vim.keymap.set("n", "<leader>w", function()
+  vim.wo.wrap = not vim.wo.wrap
+end)
 
--- Paste from system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { silent = true })
+-- Open mini.pick
+--
 
--- Cut (delete) to system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>d", '"+d', { silent = true })
-vim.keymap.set("n", "<leader>D", '"+D', { silent = true })
+-- Pick files
+vim.keymap.set("n", "<leader>f", function()
+  require("mini.pick").builtin.files()
+end, { desc = "Pick files" })
 
--- Toggle terminal
-vim.keymap.set('n', '<leader>tt', function()
-  require('terminal').toggle()
-end, { desc = 'Toggle terminal' })
+-- Pick buffer
+vim.keymap.set("n", "<leader>b", function()
+		require("mini.pick").builtin.buffers()
+end, { desc = "Pick buffers" })
 
--- Run command in terminal
-vim.keymap.set('n', '<leader>tr', function()
-  require('terminal').run()
-end, { desc = 'Run terminal command' })
+-- LSP dialog
+--
 
--- Send text ke terminal
-vim.keymap.set({ 'n', 't' }, '<C-t>', function()
-  return require('terminal.mappings').operator_send()
-end, { expr = true, desc = 'Send to terminal' })
+-- LSP Info
+vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 
--- Escape terminal insert mode
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- Diagnostic
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
+
+-- Terminal
+--
+
+-- Open Terminal
+vim.keymap.set("n", "<leader>t", "<cmd>term<CR>")
+
+-- Open Terminal in Vertical Split
+vim.keymap.set("n", "<leader>vt", "<cmd>vsplit | term<CR>")
+
+-- Open Terminal in Horizontal Split
+vim.keymap.set("n", "<leader>st", "<cmd>split | term<CR>")
+
+-- Go to Normal
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")

@@ -12,8 +12,8 @@ add({ source = "Mofiqul/adwaita.nvim" })
 add({ source = "lewis6991/gitsigns.nvim" })
 add({ source = "arnamak/stay-centered.nvim" })
 
--- Terminal
-add({ source = "rebelot/terminal.nvim" })
+-- Snippets
+add({ source = "rafamadriz/friendly-snippets" })
 
 -- LSP
 add({ source = "mason-org/mason-lspconfig.nvim" })
@@ -22,6 +22,7 @@ add({
 	 source = "neovim/nvim-lspconfig",
 	 depends = { "mason-org/mason.nvim" },
 })
+add({ source = "folke/lazydev.nvim" })
 
 -- mini.nvim modules
 local mini = {
@@ -40,6 +41,8 @@ local mini = {
 	 "mini.starter",
 	 "mini.diff",
 	 "mini.tabline",
+	 "mini.snippets",
+	 "mini.pick",
 }
 
 for _, m in ipairs(mini) do
