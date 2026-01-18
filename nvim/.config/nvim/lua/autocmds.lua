@@ -7,32 +7,32 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 -- Status column
-vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
-	 callback = function()
+function _G.StatusColumn()
+  local s = " %s%="
+  s = s .. (vim.v.virtnum < 0 and " " or (vim.v.relnum > 0 and vim.v.relnum or vim.v.lnum))
+  s = s .. "│"
+  return s
+end
 
-				if vim.bo.filetype == "ministarter" then
-						vim.o.statuscolumn = ""
-						return
-				end
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
+  callback = function()
+    local ft = vim.bo.filetype
+    local bt = vim.bo.buftype
+    vim.wo.statuscolumn = (ft == "ministarter" or bt == "terminal") and "" or "%!v:lua.StatusColumn()"
+  end,
+})
 
-				vim.o.statuscolumn = "%!v:lua.StatusColumn()"
+-- Disable Scrolloff on term
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    vim.wo.scrolloff = 0
+  end,
+})
 
-				function _G.StatusColumn()
-						local s = " "
-						-- Signs
-						s = s .. "%s"
-						-- Spacing
-						s = s .. "%="
-						-- Line number
-						if vim.v.virtnum < 0 then
-						s = s .. " "
-						else
-						s = s .. (vim.v.relnum > 0 and vim.v.relnum or vim.v.lnum)
-						end
-						-- Separator
-						s = s .. (vim.v.virtnum < 0 and "│" or "│")
-						return s
-				end
+-- Treesitter
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    pcall(vim.treesitter.start)
   end,
 })
 

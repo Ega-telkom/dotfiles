@@ -12,7 +12,13 @@ require("mini.starter").setup()
 require("mini.diff").setup()
 require("mini.tabline").setup()
 require("mini.notify").setup()
-require("mini.pick").setup()
+
+require("mini.pick").setup({
+  options = {
+    -- Whether to cache matches (more speed and memory on repeated prompts)
+    use_cache = true,
+  },
+})
 
 local gen_loader = require('mini.snippets').gen_loader
 require('mini.snippets').setup({
@@ -38,10 +44,10 @@ require("mini.hipatterns").setup({
 })
 
 require("mini.indentscope").setup({
-	 symbol = "│",
-	 draw = {
-		  -- priority = 5,
-	 },
+  symbol = "│",
+  draw = {
+    -- priority = 5,
+  },
 })
 require("mini.icons").setup({ style = "glyph" })
 require("mini.statusline").setup()

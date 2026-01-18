@@ -6,4 +6,3 @@ vim.cmd.colorscheme("adwaita")
 require("gitsigns").setup({
 	 current_line_blame = true,
 })
-require("stay-centered").setup()
