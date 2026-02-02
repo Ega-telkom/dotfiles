@@ -22,6 +22,8 @@ require("autocmds")
 
 -- Plugins
 require("plugins.mini")
+require("plugins.formatting")
 require("plugins.lsp")
 require("plugins.ui")
 require("plugins.treesitter")
+require("plugins.lazydev")

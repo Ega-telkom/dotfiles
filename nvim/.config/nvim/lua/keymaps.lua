@@ -30,8 +30,24 @@ end, { desc = "Pick files" })
 
 -- Pick buffer
 vim.keymap.set("n", "<leader>b", function()
-		require("mini.pick").builtin.buffers()
+  require("mini.pick").builtin.buffers()
 end, { desc = "Pick buffers" })
+
+-- Pick everything
+vim.keymap.set("n", "<leader>/", function()
+  require("mini.pick").builtin.grep_live()
+end, { desc = "Pick buffers" })
+
+-- Buffer Management
+--
+vim.keymap.set('n', '<leader>db', function()
+  require('mini.bufremove').delete()
+end, { desc = 'Delete buffer' })
+
+-- Force delete
+vim.keymap.set('n', '<leader>dB', function()
+  require('mini.bufremove').delete(0, true)
+end, { desc = 'Force delete buffer' })
 
 -- LSP dialog
 --
@@ -57,21 +73,63 @@ vim.keymap.set("n", "<leader>st", "<cmd>split | term<CR>")
 -- Go to Normal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
--- Treesitter
+-- Treesitter text objects
+local ts = function(obj, query)
+  return function()
+    require("nvim-treesitter-textobjects.select").select_textobject(obj, query or "textobjects")
+  end
+end
+
+-- Functions
+vim.keymap.set({ "x", "o" }, "af", ts("@function.outer"))
+vim.keymap.set({ "x", "o" }, "if", ts("@function.inner"))
+
+-- Classes
+vim.keymap.set({ "x", "o" }, "ac", ts("@class.outer"))
+vim.keymap.set({ "x", "o" }, "ic", ts("@class.inner"))
+
+-- Conditionals (if/else)
+vim.keymap.set({ "x", "o" }, "ai", ts("@conditional.outer"))
+vim.keymap.set({ "x", "o" }, "ii", ts("@conditional.inner"))
 --
-vim.keymap.set({ "x", "o" }, "am", function()
-  require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects")
-end)
-vim.keymap.set({ "x", "o" }, "im", function()
-  require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects")
-end)
-vim.keymap.set({ "x", "o" }, "ac", function()
-  require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects")
-end)
-vim.keymap.set({ "x", "o" }, "ic", function()
-  require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects")
-end)
--- You can also use captures from other query groups like `locals.scm`
-vim.keymap.set({ "x", "o" }, "as", function()
-  require "nvim-treesitter-textobjects.select".select_textobject("@local.scope", "locals")
-end)
+-- Loops
+vim.keymap.set({ "x", "o" }, "al", ts("@loop.outer"))
+vim.keymap.set({ "x", "o" }, "il", ts("@loop.inner"))
+
+-- Parameters/arguments
+vim.keymap.set({ "x", "o" }, "aa", ts("@parameter.outer"))
+vim.keymap.set({ "x", "o" }, "ia", ts("@parameter.inner"))
+
+-- Comments
+vim.keymap.set({ "x", "o" }, "a/", ts("@comment.outer"))
+
+-- Blocks
+vim.keymap.set({ "x", "o" }, "ab", ts("@block.outer"))
+vim.keymap.set({ "x", "o" }, "ib", ts("@block.inner"))
+
+-- Scope
+vim.keymap.set({ "x", "o" }, "as", ts("@local.scope", "locals"))
+
+-- Split windows
+vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split vertical' })
+vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split horizontal' })
+vim.keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = 'Close split' })
+
+-- Resize
+vim.keymap.set('n', '<S-k>', '<cmd>resize +2<CR>')
+vim.keymap.set('n', '<S-j>', '<cmd>resize -2<CR>')
+vim.keymap.set('n', '<S-l>', '<cmd>vertical resize -2<CR>')
+vim.keymap.set('n', '<S-h>', '<cmd>vertical resize +2<CR>')
+
+-- Navigate splits
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+
+-- Clipboard
+--
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = 'Yank to clipboard' })
+vim.keymap.set({'n', 'v'}, '<leader>d', '"+d', { desc = 'Cut to clipboard' })
+vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', { desc = 'Paste from clipboard' })
+vim.keymap.set({'n', 'v'}, '<leader>P', '"+P', { desc = 'Paste before from clipboard' })

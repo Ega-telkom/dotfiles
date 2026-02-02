@@ -24,12 +24,15 @@ add({
 add({ source = "folke/lazydev.nvim" })
 
 -- Formatting
-add({ source = "tpope/vim-sleuth" })
+add({ source = "Darazaki/indent-o-matic" })
 add({
   source = 'nvim-treesitter/nvim-treesitter',
   hooks = { post_checkout = function() vim.cmd('TSUpdate') end }
 })
 add({ source = "nvim-treesitter/nvim-treesitter-textobjects", checkout = "main" })
+
+-- Live Server
+add({ source = "barrettruth/live-server.nvim" })
 
 -- mini.nvim modules
 local mini = {
@@ -50,6 +53,7 @@ local mini = {
   "mini.tabline",
   "mini.snippets",
   "mini.pick",
+  "mini.bufremove",
 }
 
 for _, m in ipairs(mini) do

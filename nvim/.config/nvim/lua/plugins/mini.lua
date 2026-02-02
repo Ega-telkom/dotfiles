@@ -1,23 +1,41 @@
 -- lua/plugins/mini.lua
 
 require("mini.fuzzy").setup()
-require("mini.completion").setup()
 require("mini.comment").setup()
 require("mini.pairs").setup()
 require("mini.git").setup()
-require("mini.files").setup()
 require("mini.trailspace").setup()
 require("mini.cursorword").setup()
 require("mini.starter").setup()
 require("mini.diff").setup()
 require("mini.tabline").setup()
 require("mini.notify").setup()
+require('mini.bufremove').setup()
+
+require("mini.completion").setup({
+  mappings = {
+    move_down  = '<C-j>',
+    move_up    = '<C-k>',
+  }
+})
+require("mini.files").setup({
+  windows = {
+    preview = true,
+    width_focus = 50,
+    width_nofocus = 15,
+    width_preview = 50,
+  }
+})
 
 require("mini.pick").setup({
   options = {
     -- Whether to cache matches (more speed and memory on repeated prompts)
     use_cache = true,
   },
+  mappings = {
+    move_down  = '<C-j>',
+    move_up    = '<C-k>',
+  }
 })
 
 local gen_loader = require('mini.snippets').gen_loader

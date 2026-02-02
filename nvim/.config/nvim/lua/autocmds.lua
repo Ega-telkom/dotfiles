@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
   callback = function()
     local ft = vim.bo.filetype
     local bt = vim.bo.buftype
-    vim.wo.statuscolumn = (ft == "ministarter" or bt == "terminal") and "" or "%!v:lua.StatusColumn()"
+    vim.wo.statuscolumn = (bt ~= "" or ft == "ministarter" or ft == "NvimTree") and "" or "%!v:lua.StatusColumn()"
   end,
 })
 
@@ -33,13 +33,5 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     pcall(vim.treesitter.start)
-  end,
-})
-
--- Configure Lua LSP to work with nvim configs
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
-  callback = function()
-    require("lazydev").setup()
   end,
 })
