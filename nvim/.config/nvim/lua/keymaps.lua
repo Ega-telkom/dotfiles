@@ -53,10 +53,10 @@ end, { desc = 'Force delete buffer' })
 --
 
 -- LSP Info
-vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
 
 -- Diagnostic
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
+-- vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
 
 -- Terminal
 --
@@ -91,7 +91,7 @@ vim.keymap.set({ "x", "o" }, "ic", ts("@class.inner"))
 -- Conditionals (if/else)
 vim.keymap.set({ "x", "o" }, "ai", ts("@conditional.outer"))
 vim.keymap.set({ "x", "o" }, "ii", ts("@conditional.inner"))
---
+
 -- Loops
 vim.keymap.set({ "x", "o" }, "al", ts("@loop.outer"))
 vim.keymap.set({ "x", "o" }, "il", ts("@loop.inner"))
@@ -133,3 +133,22 @@ vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = 'Yank to clipboard' })
 vim.keymap.set({'n', 'v'}, '<leader>d', '"+d', { desc = 'Cut to clipboard' })
 vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', { desc = 'Paste from clipboard' })
 vim.keymap.set({'n', 'v'}, '<leader>P', '"+P', { desc = 'Paste before from clipboard' })
+
+-- mini.keymaps
+--
+local map_multistep = require('mini.keymap').map_multistep
+
+map_multistep('i', '<Tab>',   { 'pmenu_next' })
+map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
+map_multistep('i', '<CR>',    { 'pmenu_accept', 'minipairs_cr' })
+map_multistep('i', '<BS>',    { 'minipairs_bs' })
+
+-- Make jump mappings or skip to use built-in <Tab>/<S-Tab> in Neovim>=0.11
+local jump_next = function()
+  if vim.snippet.active({direction = 1}) then return vim.snippet.jump(1) end
+end
+local jump_prev = function()
+  if vim.snippet.active({direction = -1}) then vim.snippet.jump(-1) end
+end
+vim.keymap.set({ 'i', 's' }, '<C-l>', jump_next)
+vim.keymap.set({ 'i', 's' }, '<C-h>', jump_prev)

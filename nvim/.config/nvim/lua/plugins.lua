@@ -54,6 +54,8 @@ local mini = {
   "mini.snippets",
   "mini.pick",
   "mini.bufremove",
+  "mini.sessions",
+  "mini.keymap",
 }
 
 for _, m in ipairs(mini) do

@@ -6,18 +6,24 @@ require("mini.pairs").setup()
 require("mini.git").setup()
 require("mini.trailspace").setup()
 require("mini.cursorword").setup()
-require("mini.starter").setup()
 require("mini.diff").setup()
 require("mini.tabline").setup()
 require("mini.notify").setup()
 require('mini.bufremove').setup()
+require('mini.sessions').setup()
+require('mini.icons').setup()
 
-require("mini.completion").setup({
-  mappings = {
-    move_down  = '<C-j>',
-    move_up    = '<C-k>',
+local starter = require("mini.starter")
+starter.setup({
+  items = {
+    starter.sections.sessions(10, true),
+    starter.sections.recent_files(5, false, false)
   }
 })
+
+require("mini.completion").setup()
+MiniDeps.later(MiniIcons.tweak_lsp_kind)
+
 require("mini.files").setup({
   windows = {
     preview = true,
