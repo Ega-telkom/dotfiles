@@ -8,16 +8,20 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 function _G.StatusColumn()
   local s = " %s%="
-  s = s .. (vim.v.virtnum < 0 and " " or (vim.v.relnum > 0 and vim.v.relnum or vim.v.lnum))
+  if vim.v.virtnum < 0 then
+    s = s .. " "
+  elseif vim.v.relnum > 0 then
+    s = s .. vim.v.relnum
+  else
+    s = s .. vim.v.lnum .. " "
+  end
   s = s .. "│"
   return s
 end
 
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
   callback = function()
-    local ft = vim.bo.filetype
-    local bt = vim.bo.buftype
-    vim.wo.statuscolumn = (bt ~= "" or ft == "ministarter" or ft == "NvimTree") and "" or "%!v:lua.StatusColumn()"
+    vim.wo.statuscolumn = vim.bo.buftype == "" and "%!v:lua.StatusColumn()" or ""
   end,
 })
 
