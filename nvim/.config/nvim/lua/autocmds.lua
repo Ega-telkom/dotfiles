@@ -13,7 +13,7 @@ function _G.StatusColumn()
   elseif vim.v.relnum > 0 then
     s = s .. vim.v.relnum
   else
-    s = s .. vim.v.lnum .. " "
+    s = s .. vim.v.lnum .. ""
   end
   s = s .. "│"
   return s
@@ -21,7 +21,9 @@ end
 
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
   callback = function()
-    vim.wo.statuscolumn = vim.bo.buftype == "" and "%!v:lua.StatusColumn()" or ""
+    local is_normal = vim.bo.buftype == ""
+    vim.wo.statuscolumn = is_normal and "%!v:lua.StatusColumn()" or ""
+    vim.b.miniindentscope_disable = not is_normal
   end,
 })
 
