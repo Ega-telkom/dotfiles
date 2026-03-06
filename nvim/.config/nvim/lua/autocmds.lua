@@ -6,24 +6,20 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end
 })
 
-function _G.StatusColumn()
-  local s = " %s%="
-  if vim.v.virtnum < 0 then
-    s = s .. " "
-  elseif vim.v.relnum > 0 then
-    s = s .. vim.v.relnum
-  else
-    s = s .. vim.v.lnum .. ""
-  end
-  s = s .. "│"
-  return s
-end
-
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
   callback = function()
     local is_normal = vim.bo.buftype == ""
-    vim.wo.statuscolumn = is_normal and "%!v:lua.StatusColumn()" or ""
     vim.b.miniindentscope_disable = not is_normal
+  end,
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "DiagnosticErrorLn", { bg = "#4f1919" })
+    vim.api.nvim_set_hl(0, "DiagnosticWarnLn", { bg = "#4f4819" })
+    vim.api.nvim_set_hl(0, "DiagnosticInfoLn", { bg = "#192a4f" })
+    vim.api.nvim_set_hl(0, "DiagnosticHintLn", { bg = "#192a4f" })
   end,
 })
 

@@ -1,9 +1,14 @@
 -- lua/configs.lua
 
 vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = true,
-  signs = true,
+  signs = {
+    linehl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticErrorLn",
+      [vim.diagnostic.severity.WARN]  = "DiagnosticWarnLn",
+      [vim.diagnostic.severity.INFO]  = "DiagnosticInfoLn",
+      [vim.diagnostic.severity.HINT]  = "DiagnosticHintLn",
+    },
+  },
   underline = true,
-  update_in_insert = false,
+  update_in_insert = true,
 })

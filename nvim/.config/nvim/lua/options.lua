@@ -13,11 +13,10 @@ vim.o.splitbelow = true
 
 -- UI
 vim.opt.termguicolors = true
-vim.opt.signcolumn = "number"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.wo.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
 
 -- Buffers
 vim.opt.hidden = true

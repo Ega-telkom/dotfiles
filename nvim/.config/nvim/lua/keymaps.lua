@@ -56,7 +56,7 @@ end, { desc = 'Force delete buffer' })
 vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
 
 -- Diagnostic
--- vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>l', vim.diagnostic.open_float)
 
 -- Terminal
 --
