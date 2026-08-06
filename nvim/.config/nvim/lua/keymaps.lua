@@ -15,11 +15,6 @@ vim.keymap.set("n", "<leader>e", function()
   require("mini.files").open()
 end, { desc = "Open file explorer" })
 
--- Toggle Wrap
-vim.keymap.set("n", "<leader>w", function()
-  vim.wo.wrap = not vim.wo.wrap
-end)
-
 -- Open mini.pick
 --
 
@@ -110,22 +105,23 @@ vim.keymap.set({ "x", "o" }, "ib", ts("@block.inner"))
 -- Scope
 vim.keymap.set({ "x", "o" }, "as", ts("@local.scope", "locals"))
 
--- Split windows
-vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split vertical' })
-vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split horizontal' })
-vim.keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = 'Close split' })
+-- Split
+vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split vertical' })
+vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split horizontal' })
+vim.keymap.set('n', '<leader>wx', '<cmd>close<CR>', { desc = 'Close split' })
+vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize splits' })
 
--- Resize
-vim.keymap.set('n', '<S-k>', '<cmd>resize +2<CR>')
-vim.keymap.set('n', '<S-j>', '<cmd>resize -2<CR>')
-vim.keymap.set('n', '<S-l>', '<cmd>vertical resize -2<CR>')
-vim.keymap.set('n', '<S-h>', '<cmd>vertical resize +2<CR>')
+-- Navigate
+vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Go left' })
+vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Go down' })
+vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Go up' })
+vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Go right' })
 
--- Navigate splits
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
+-- Resize (arah huruf = arah membesar)
+vim.keymap.set('n', '<leader>wH', '<cmd>vertical resize -2<CR>', { desc = 'Narrower' })
+vim.keymap.set('n', '<leader>wL', '<cmd>vertical resize +2<CR>', { desc = 'Wider' })
+vim.keymap.set('n', '<leader>wJ', '<cmd>resize -2<CR>', { desc = 'Shorter' })
+vim.keymap.set('n', '<leader>wK', '<cmd>resize +2<CR>', { desc = 'Taller' })
 
 -- Clipboard
 --

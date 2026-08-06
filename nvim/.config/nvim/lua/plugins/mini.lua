@@ -7,11 +7,9 @@ require("mini.git").setup()
 require("mini.trailspace").setup()
 require("mini.cursorword").setup()
 require("mini.diff").setup()
--- require("mini.tabline").setup()
 require("mini.notify").setup()
 require('mini.bufremove').setup()
-require('mini.sessions').setup()
-require('mini.icons').setup()
+require("mini.sessions").setup()
 
 local starter = require("mini.starter")
 starter.setup({
@@ -22,7 +20,6 @@ starter.setup({
 })
 
 require("mini.completion").setup()
-MiniDeps.later(MiniIcons.tweak_lsp_kind)
 
 require("mini.files").setup({
   windows = {
@@ -44,19 +41,6 @@ require("mini.pick").setup({
   }
 })
 
-local gen_loader = require('mini.snippets').gen_loader
-require('mini.snippets').setup({
-  snippets = {
-    -- Load custom file with global snippets first (adjust for Windows)
-    -- gen_loader.from_file('~/.config/nvim/snippets/global.json'),
-
-    -- Load snippets based on current language by reading files from
-    -- "snippets/" subdirectories from 'runtimepath' directories.
-    gen_loader.from_lang(),
-  },
-})
-require("mini.snippets").start_lsp_server()
-
 require("mini.hipatterns").setup({
   highlighters = {
     fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
@@ -67,11 +51,36 @@ require("mini.hipatterns").setup({
   },
 })
 
-require("mini.indentscope").setup({
-  symbol = "│",
-  draw = {
-    -- priority = 5,
-  },
+require("mini.icons").setup({ style = "ascii" })
+require('mini.statusline').setup({
+  use_icons = false,
+  content = {
+    active = function()
+      local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+      local git           = MiniStatusline.section_git({ trunc_width = 40 })
+      local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 40 })
+      local filename = MiniStatusline.section_filename({ trunc_width = 140, args = { 'short' } })
+
+      local short_modes = {
+        ['Normal']   = 'NOR', ['Insert']   = 'INS', ['Visual']   = 'VIS',
+        ['V-Line']   = 'V-L', ['V-Block']  = 'V-B', ['Command']  = 'CMD',
+        ['Replace']  = 'REP', ['Terminal'] = 'TER',
+      }
+      if short_modes[mode] then mode = short_modes[mode] end
+
+      if git ~= '' then git = git:gsub('^Git%s+', '') end
+      if diagnostics ~= '' then diagnostics = diagnostics:gsub('^Diag%s+', '') end
+
+      local location = string.format('%d:%d', vim.fn.line('.'), vim.fn.col('.'))
+
+      return MiniStatusline.combine_groups({
+        { hl = mode_hl,                  strings = { mode } },
+        { hl = 'MiniStatuslineDevinfo',  strings = { git, diagnostics } },
+        '%<',
+        { hl = 'MiniStatuslineFilename', strings = { filename } },
+        '%=',
+        { hl = mode_hl,                  strings = { location } },
+      })
+    end
+  }
 })
-require("mini.icons").setup({ style = "glyph" })
-require("mini.statusline").setup()

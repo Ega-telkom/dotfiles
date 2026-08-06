@@ -1,38 +1,29 @@
 -- lua/plugins.lua
 
-local deps = require("mini.deps")
-deps.setup({
-  path = { package = vim.fn.stdpath("data") .. "/site" },
-})
-
-local add = deps.add
-
 -- UI
-add({ source = "Mofiqul/adwaita.nvim" })
-add({ source = "lewis6991/gitsigns.nvim" })
+vim.pack.add({ 'https://github.com/Mofiqul/adwaita.nvim' })
+vim.pack.add({ 'https://github.com/dchinmay2/alabaster.nvim' })
+vim.pack.add({ 'https://github.com/oskarnurm/koda.nvim' })
+vim.pack.add({ 'https://github.com/nyoom-engineering/oxocarbon.nvim' })
+vim.pack.add({ 'https://github.com/leojimenezg/minimal-madness-nvim' })
+vim.pack.add({ 'https://github.com/elliotekj/enough.vim' })
+vim.pack.add({ 'https://github.com/bettervim/yugen.nvim' })
+vim.pack.add({ 'https://github.com/silentium-theme/silentium.nvim' })
+vim.pack.add({ 'https://github.com/lewis6991/gitsigns.nvim' })
 
 -- Snippets
-add({ source = "rafamadriz/friendly-snippets" })
+vim.pack.add({ 'https://github.com/rafamadriz/friendly-snippets' })
 
 -- LSP
-add({ source = "mason-org/mason-lspconfig.nvim" })
-add({ source = "mason-org/mason.nvim" })
-add({
-  source = "neovim/nvim-lspconfig",
-  depends = { "mason-org/mason.nvim" },
-})
-add({ source = "folke/lazydev.nvim" })
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
+vim.pack.add({ 'https://github.com/mason-org/mason-lspconfig.nvim' })
+vim.pack.add({ 'https://github.com/mason-org/mason.nvim' })
+vim.pack.add({ 'https://github.com/folke/lazydev.nvim' })
 
 -- Formatting
-add({ source = "Darazaki/indent-o-matic" })
-add({
-  source = 'nvim-treesitter/nvim-treesitter',
-  hooks = { post_checkout = function() vim.cmd('TSUpdate') end }
-})
-add({ source = "nvim-treesitter/nvim-treesitter-textobjects", checkout = "main" })
-
--- Live Server
-add({ source = "barrettruth/live-server.nvim" })
+vim.pack.add({ 'https://github.com/Darazaki/indent-o-matic' })
+vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
+vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' })
 
 -- mini.nvim modules
 local mini = {
@@ -59,5 +50,5 @@ local mini = {
 }
 
 for _, m in ipairs(mini) do
-  add({ source = "nvim-mini/" .. m, checkout = 'stable' })
+  vim.pack.add({ 'https://github.com/nvim-mini/' .. m })
 end

@@ -1,19 +1,3 @@
--- Put this at the top of 'init.lua'
-local path_package = vim.fn.stdpath('data') .. '/site'
-local mini_path = path_package .. '/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    -- Uncomment next line to use 'stable' branch
-    -- '--branch', 'stable',
-    'https://github.com/nvim-mini/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
-
 require("options")
 require("keymaps")
 require("plugins")
@@ -22,8 +6,16 @@ require("autocmds")
 
 -- Plugins
 require("plugins.mini")
-require("plugins.formatting")
 require("plugins.lsp")
+require("plugins.formatting")
 require("plugins.ui")
 require("plugins.treesitter")
-require("plugins.lazydev")
+require("plugins.lazydev") 
+
+-- LSP
+require("lsp.gopls")
+require("lsp.lua_ls")
+require("lsp.pyright")
+require("lsp.ts_ls")
+require("lsp.prismals")
+require("lsp.eslint")

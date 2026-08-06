@@ -17,6 +17,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = "100"
+vim.opt.winbar = ""        -- matiin winbar
+vim.opt.laststatus = 3     -- statusline global (cuma 1, bukan per-window)
 
 -- Buffers
 vim.opt.hidden = true

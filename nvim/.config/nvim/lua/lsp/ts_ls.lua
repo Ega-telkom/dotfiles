@@ -1,0 +1,14 @@
+return {
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+  root_markers = { 'package.json', 'tsconfig.json', '.git' },
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  },
+}
