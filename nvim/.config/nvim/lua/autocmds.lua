@@ -16,10 +16,10 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
-    vim.api.nvim_set_hl(0, "DiagnosticErrorLn", { bg = "#4f1919" })
-    vim.api.nvim_set_hl(0, "DiagnosticWarnLn", { bg = "#4f4819" })
-    vim.api.nvim_set_hl(0, "DiagnosticInfoLn", { bg = "#192a4f" })
-    vim.api.nvim_set_hl(0, "DiagnosticHintLn", { bg = "#192a4f" })
+    vim.api.nvim_set_hl(0, "DiagnosticErrorLn", { bg = "#3b1713" })
+    vim.api.nvim_set_hl(0, "DiagnosticWarnLn", { bg = "#2e2a10" })
+    vim.api.nvim_set_hl(0, "DiagnosticInfoLn", { bg = "#0c1824" })
+    vim.api.nvim_set_hl(0, "DiagnosticHintLn", { bg = "#0c1824" })
   end,
 })
 

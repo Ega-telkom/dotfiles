@@ -10,6 +10,11 @@ vim.lsp.enable({
     'eslint',
     'tailwindcss',
     'prismals',
-    'html',
-    'emmet_language_server'
+    'html_ls',
+    'clangd',
+    'rust_analyzer',
+    'emmet_language_server',
+    'css_ls',
+    'vue_ls',
+    'zls'
 })

@@ -4,6 +4,7 @@ return {
     'html', 'css', 'scss',
     'javascript', 'javascriptreact',
     'typescript', 'typescriptreact',
+    'vue'
   },
   root_markers = {
     'tailwind.config.js', 'tailwind.config.ts',

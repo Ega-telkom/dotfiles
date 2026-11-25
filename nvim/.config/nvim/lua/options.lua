@@ -3,6 +3,7 @@
 -- Basic
 vim.opt.mouse = ""
 vim.opt.tabstop = 4
+vim.o.winborder = "single"
 vim.opt.shiftwidth = 4
 vim.opt.scrolloff = 8
 vim.opt.expandtab = true
@@ -28,3 +29,6 @@ vim.opt.swapfile = false
 -- Search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- Wrapping
+vim.opt.whichwrap = "b,s,<,>,[,]"

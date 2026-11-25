@@ -8,6 +8,14 @@
       "rev": "b902c73fabefc13583bfc0c18b28950ea8f6244f",
       "src": "https://github.com/dchinmay2/alabaster.nvim"
     },
+    "ashen.nvim": {
+      "rev": "bfb04bd50b69d863469b2deb9fb361cf0d945ba7",
+      "src": "https://github.com/ficd0/ashen.nvim"
+    },
+    "citruszest.nvim": {
+      "rev": "e6fed9ec3d0ac190b1387379c138ba5e23a1f4f9",
+      "src": "https://github.com/zootedb0t/citruszest.nvim"
+    },
     "enough.vim": {
       "rev": "a4d41cc070b04fc05bb6ac1010d9659035e1003f",
       "src": "https://github.com/elliotekj/enough.vim"
@@ -128,6 +136,14 @@
       "rev": "92867bd1301b09d2aacbe7d941cfeeac94df573f",
       "src": "https://github.com/leojimenezg/minimal-madness-nvim"
     },
+    "monoglow.nvim": {
+      "rev": "a249b1f55bfe9171e2f8aff7acf140f78ca4b2bb",
+      "src": "https://github.com/wnkz/monoglow.nvim"
+    },
+    "nazgul-vim": {
+      "rev": "0d8dac6731b4538f5db6bcb805c175fff59688fa",
+      "src": "https://github.com/nocksock/nazgul-vim"
+    },
     "nvim-lspconfig": {
       "rev": "43ed3797b266e1ee8d222e491379ad471c9d3146",
       "src": "https://github.com/neovim/nvim-lspconfig"
@@ -147,6 +163,14 @@
     "silentium.nvim": {
       "rev": "622f6f4d2d114840ced2af7f1dfb4dae149cbf5f",
       "src": "https://github.com/silentium-theme/silentium.nvim"
+    },
+    "vim-habamax": {
+      "rev": "c538284552cf22abb733140c77cd0cc95cb80a05",
+      "src": "https://github.com/habamax/vim-habamax"
+    },
+    "vim-sunbather": {
+      "rev": "64506a07a735ad92752e0e9935c4fc304f0327a4",
+      "src": "https://github.com/nikolvs/vim-sunbather"
     },
     "yugen.nvim": {
       "rev": "cfd97621c2f724443346ae841facaf4e00410e5a",
