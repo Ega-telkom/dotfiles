@@ -17,3 +17,6 @@ Unlink the config:
 ```sh
 $ stow -D fuzzel
 ```
+
+## TODO
+- Make the config work across non-systemd systems.
