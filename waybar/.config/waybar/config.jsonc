@@ -4,7 +4,7 @@
     "height": 22,
     "spacing": 0,
     "modules-left": ["niri/workspaces", "niri/window"],
-    "modules-right": ["tray", "pulseaudio", "pulseaudio#mic", "network", "clock"],
+    "modules-right": ["tray", "custom/privacy-screencast", "custom/privacy-camera", "custom/privacy-mic", "pulseaudio", "pulseaudio#mic", "network", "clock"],
 
     "niri/workspaces": {
         "format": "[WORKSPACE {index}/{total}]",
@@ -18,6 +18,18 @@
     },
     "tray": {
         "spacing": 8
+    },
+    "custom/privacy-screencast": {
+        "exec": "~/.config/waybar/privacy-screencast.sh",
+        "tooltip": false
+    },
+    "custom/privacy-camera": {
+        "exec": "~/.config/waybar/privacy-camera.sh",
+        "tooltip": false
+    },
+    "custom/privacy-mic": {
+        "exec": "~/.config/waybar/privacy-mic.sh",
+        "tooltip": false
     },
     "pulseaudio": {
         "format": "[VOL:{volume}%]",
