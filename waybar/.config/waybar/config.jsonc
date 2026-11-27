@@ -1,0 +1,51 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 22,
+    "spacing": 0,
+    "modules-left": ["niri/workspaces", "niri/window"],
+    "modules-right": ["tray", "pulseaudio", "pulseaudio#mic", "network", "clock"],
+
+    "niri/workspaces": {
+        "format": "[WORKSPACE {index}/{total}]",
+        "tooltip": false,
+        "current-only": true
+    },
+    "niri/window": {
+        "format": " {title}",
+        "max-length": 100,
+        "tooltip": false
+    },
+    "tray": {
+        "spacing": 8
+    },
+    "pulseaudio": {
+        "format": "[VOL:{volume}%]",
+        "format-muted": "[VOL:MUTE]",
+        "tooltip": false,
+        "scroll-step": 1,
+        "on-click": "~/.config/waybar/audio-menu.sh sink",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+    "pulseaudio#mic": {
+        "format": "{format_source}",
+        "format-source": "[MIC:{volume}%]",
+        "format-source-muted": "[MIC:MUTE]",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/audio-menu.sh source",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 1%+",
+        "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 1%-"
+    },
+    "network": {
+        "format-ethernet": "[NET:ETH]",
+        "format-wifi": "[NET:{essid}]",
+        "format-disconnected": "[NET:OFF]",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/net-menu.sh"
+    },
+    "clock": {
+        "format": "[{:%I:%M %p}]",
+        "tooltip": false
+    }
+}

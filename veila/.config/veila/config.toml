@@ -1,0 +1,61 @@
+[background]
+mode = "solid"
+color = "#000000"
+
+[lock]
+hide_cursor = true
+allow_empty_password = false
+
+[weather]
+enabled = false
+
+[battery]
+enabled = false
+
+[visuals.avatar]
+enabled = false
+
+[visuals.username]
+enabled = false
+
+[visuals.clock]
+enabled = false
+
+[visuals.date]
+enabled = false
+
+[visuals.keyboard]
+enabled = false
+
+[visuals.battery]
+enabled = false
+
+[visuals.eye]
+enabled = false
+
+[visuals.now_playing]
+enabled = false
+
+[visuals.placeholder]
+enabled = false
+
+[visuals.input]
+font_family = "Ioskeley Mono"
+font_size = 11
+background_color = "#00000000"
+border_color = "#444444"
+border_width = 1
+width = 400
+height = 36
+radius = 0
+mask_color = "#FFFFFF"
+halign = "center"
+valign = "center"
+x = 0
+y = 0
+
+[visuals.status]
+mode = "inline"
+color = "#888888"
+pending_color = "#888888"
+rejected_color = "#FF5555"
